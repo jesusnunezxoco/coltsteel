@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Circles</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.13/howler.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script type="text/paperscript" canvas="myCanvas">
+
+  	var keyData = {
+	  	a: {
+	  		color: "red",
+	  		sound: new Howl({
+	  			src: ["sounds/suspension.mp3"]
+	  		})
+	  	},
+	  	s: {
+	  		color: "DarkOrange",
+	  		sound: new Howl({
+	  			src: ["sounds/clay.mp3"]
+	  		})
+	  	},
+	  	d: {
+	  		color: "yellow",
+	  		sound: new Howl({
+	  			src: ["sounds/zig-zag.mp3"]
+	  		})
+	  	},
+	  	f: {
+	  		color: "SpringGreen",
+	  		sound: new Howl({
+	  			src: ["sounds/veil.mp3"]
+	  		})
+	  	},
+	  	g: {
+	  		color: "DarkGreen",
+	  		sound: new Howl({
+	  			src: ["sounds/wipe.mp3"]
+	  		})
+	  	},
+	  	h: {
+	  		color: "Aqua",
+	  		sound: new Howl({
+	  			src: ["sounds/bubbles.mp3"]
+	  		})
+	  	},
+	  	j: {
+	  		color: "RebeccaPurple",
+	  		sound: new Howl({
+	  			src: ["sounds/moon.mp3"]
+	  		})
+	  	}
+	  }
+
+	var circles = [];
+
+	function onKeyDown(event) {
+	  if(keyData[event.key]){
+	  var maxPoint = new Point(view.size.width, view.size.height);
+	  var randomPoint = Point.random();
+	  var point = maxPoint * randomPoint;
+	  var newCircle = Path.Circle(point, 500);
+	  newCircle.fillColor = keyData[event.key].color;
+	  keyData[event.key].sound.play();
+	  circles.push(newCircle);
+	}
+}
+
+
+	function onFrame(event){
+  for(var i = 0; i < circles.length; i++){
+    circles[i].scale(0.9);
+    circles[i].fillColor.hue += 1;
+    if(circles[i].area < 1){
+      circles[i].remove(); // remove the circle from the canvas
+      circles.splice(i, 1); // remove the circle from the array
+      i--; // decrement i so that the loop doesn't skip a circle because of .splice()
+      console.log(circles);
+    }
+  }
+}
+
+  </script>
+</head>
+
+<body>
+  <canvas id="myCanvas" resize></canvas>
+  <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
