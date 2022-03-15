@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async Axios Examples</title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div id="jokes">
+        <h1>TV Show Search</h1>
+        <form id="searchForm">
+          <label for="searchTerm">Search for a TV Show You'd like</label>
+          <input
+            id="searchTerm"
+            name="searchTerm"
+            placeholder="Kill Bill Vol 1"
+          />
+          <button type="submit">Search</button>
+        </form>
+
+        <section>
+          <h2>Your Results:</h2>
+          <h2>Here are your results</h2>
+          <div>
+            <template>
+              <article>
+                <h3>Title</h3>
+                <p>Description</p>
+              </article>
+            </template>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
